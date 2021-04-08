@@ -98,8 +98,8 @@ export class OtwApp extends LitElement {
       this._updateProceduresListByDate);
     this.addEventListener('edit-procedure', this._editProcedure);
     this.addEventListener('add-procedure', this._loadShowProcForm);
-    this.addEventListener('save-procedure-form', this._saveProcedure);
-    this.addEventListener('close-procedure-form', () => {
+    this.addEventListener('save-proctype-form', this._saveProcedure);
+    this.addEventListener('close-proctype-form', () => {
       this._currentProcedure = null;
       this._showProcedureForm = false;
     });
@@ -572,8 +572,8 @@ export class OtwApp extends LitElement {
   // Procedures Types
   _loadShowProcTypeForm() {
     // dynamically load procedure-type-form if neccessary
-    if (typeof customElements.get('procedure-form') === 'undefined') {
-      import('./procedure-form.js').then(() => {
+    if (typeof customElements.get('proctype-form') === 'undefined') {
+      import('./proctype-form.js').then(() => {
         this._showProcTypeForm = true;
       });
     } else {
@@ -1145,11 +1145,11 @@ export class OtwApp extends LitElement {
         ?activate="${this._showDoctorForm}"
         .doctor="${this._currentEditDoctor}"
       ></doctor-form>
-      <procedure-form
+      <proctype-form
         class="${classMap({'is-hidden': !this._showProcTypeForm})}"
         ?activate="${this._showProcTypeForm}"
         .proceduretype="${this._currentEditProcType}"
-      ></procedure-form>
+      ></proctype-form>
       <nefro-spinner class="${classMap({'is-hidden': this._spinnerHidden})}"></nefro-spinner>
     `;
   }
