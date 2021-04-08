@@ -21,3 +21,6 @@
 /out-tsc/
 
 storybook-static
+firebaseAppConfig.js
+
+
