@@ -92,8 +92,10 @@ export class OtwApp extends LitElement {
     // add data store event listeners
 
     // Procedures
-    this.addEventListener('update-procedures-list', this._updateTodayProceduresList);
-    this.addEventListener('update-procedures-list-by-date', this._updateProceduresListByDate);
+    this.addEventListener('update-procedures-list',
+      this._updateTodayProceduresList);
+    this.addEventListener('update-procedures-list-by-date',
+      this._updateProceduresListByDate);
     this.addEventListener('edit-procedure', this._editProcedure);
     this.addEventListener('add-procedure', this._loadShowProcForm);
     this.addEventListener('save-procedure-form', this._saveProcedure);
@@ -123,7 +125,8 @@ export class OtwApp extends LitElement {
     });
 
     // procedures types
-    this.addEventListener('update-procedures-types-list', this._updateProcTypesList);
+    this.addEventListener('update-procedures-types-list',
+      this._updateProcTypesList);
     this.addEventListener('edit-procedure-type', this._editProcType);
     this.addEventListener('add-procedure-type', this._loadShowProcTypeForm);
     this.addEventListener('save-procedure-type-form', this._saveProcType);
@@ -133,10 +136,10 @@ export class OtwApp extends LitElement {
     });
 
     // add spinner event listeners
-    // dynamically load nefro-spinner if neccessary
+    // dynamically load otw-spinner if neccessary
     this.addEventListener('show-spinner', () => {
-      if (typeof customElements.get('nefro-spinner') === 'undefined') {
-        import('../../nefro-spinner/nefro-spinner.js').then(() => {
+      if (typeof customElements.get('otw-spinner') === 'undefined') {
+        import('./otw-spinner.js').then(() => {
           this._spinnerHidden = false;
         });
       } else {
@@ -261,7 +264,7 @@ export class OtwApp extends LitElement {
   _loadShowProcForm() {
     // dynamically load proc-form if neccessary
     if (typeof customElements.get('proc-form') === 'undefined') {
-      import('../../proc-form/proc-form.js').then(() => {
+      import('./proc-form.js').then(() => {
         this._showProcedureForm = true;
       });
     } else {
@@ -375,7 +378,7 @@ export class OtwApp extends LitElement {
   _loadShowUserForm() {
     // dynamically load user-form if neccessary
     if (typeof customElements.get('user-form') === 'undefined') {
-      import('../../user-form/user-form.js').then(() => {
+      import('./user-form.js').then(() => {
         this._showUserForm = true;
       });
     } else {
@@ -471,7 +474,7 @@ export class OtwApp extends LitElement {
   _loadShowDoctorForm() {
     // dynamically load doctor-form if neccessary
     if (typeof customElements.get('doctor-form') === 'undefined') {
-      import('../../doctor-form/doctor-form.js').then(() => {
+      import('./doctor-form.js').then(() => {
         this._showDoctorForm = true;
       });
     } else {
@@ -570,7 +573,7 @@ export class OtwApp extends LitElement {
   _loadShowProcTypeForm() {
     // dynamically load procedure-type-form if neccessary
     if (typeof customElements.get('procedure-form') === 'undefined') {
-      import('../../procedure-form/procedure-form.js').then(() => {
+      import('./procedure-form.js').then(() => {
         this._showProcTypeForm = true;
       });
     } else {
@@ -691,7 +694,7 @@ export class OtwApp extends LitElement {
     switch (page) {
       case 'procsview':
         if (typeof customElements.get('procs-vasc') === 'undefined') {
-          import('../../../components/procs-vasc/procs-vasc.js').catch(e => {
+          import('./procs-vasc.js').catch(e => {
             // eslint-disable-next-line no-console
             console.log(e);
           });
@@ -701,7 +704,7 @@ export class OtwApp extends LitElement {
         break;
       case 'usersview':
         if (typeof customElements.get('users-view') === 'undefined') {
-          import('../../../components/users-view/users-view.js').catch(e => {
+          import('./users-view.js').catch(e => {
             // eslint-disable-next-line no-console
             console.log(e);
           });
@@ -711,7 +714,7 @@ export class OtwApp extends LitElement {
         break;
       case 'doctorsview':
         if (typeof customElements.get('doctors-view') === 'undefined') {
-          import('../../../components/doctors-view/doctors-view.js').catch(e => {
+          import('./doctors-view.js').catch(e => {
             // eslint-disable-next-line no-console
             console.log(e);
           });
@@ -721,7 +724,7 @@ export class OtwApp extends LitElement {
         break;
       case 'procedurestypesview':
         if (typeof customElements.get('procedures-view') === 'undefined') {
-          import('../../../components/procedures-view/procedures-view.js').catch(e => {
+          import('./procedures-view.js').catch(e => {
             // eslint-disable-next-line no-console
             console.log(e);
           });
@@ -836,7 +839,8 @@ export class OtwApp extends LitElement {
         aria-label="main navigation"
       >
         <div class="navbar-brand">
-          <a class="navbar-item has-text-black" href="#" style="font-weight:bold;">
+          <a class="navbar-item has-text-black" 
+            href="#" style="font-weight:bold;">
             OurTeam.Work
           </a>
 
