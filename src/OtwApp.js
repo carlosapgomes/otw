@@ -693,8 +693,8 @@ export class OtwApp extends LitElement {
   _loadPage(page) {
     switch (page) {
       case 'procsview':
-        if (typeof customElements.get('procs-vasc') === 'undefined') {
-          import('./procs-vasc.js').catch(e => {
+        if (typeof customElements.get('procs-view') === 'undefined') {
+          import('./procs-view.js').catch(e => {
             // eslint-disable-next-line no-console
             console.log(e);
           });
@@ -984,14 +984,14 @@ export class OtwApp extends LitElement {
           ${templateLogin}
         </section>
 
-        <procs-vasc
+        <procs-view
           id="procsview"
           class="${classMap({
         'is-hidden': this._page !== 'procsview',
       })}"
           .procedures="${this._procedures}"
           .date="${this._currentProceduresDate}"
-        ></procs-vasc>
+        ></procs-view>
         <users-view
           id="usersview"
           .users="${this._users}"
