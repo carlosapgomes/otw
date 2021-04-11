@@ -1,4 +1,4 @@
 export const otwConfig = {
-  adminEmail: 'project-owner@emailaddress.com',
-  otwConfigFrom: 'app-admin@emailaddress.com',
+  projectOwner: 'project-owner@emailaddress.com',
+  appAdmin: 'app-admin@emailaddress.com',
 };

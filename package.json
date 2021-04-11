@@ -38,7 +38,10 @@
     "pwa-helpers": "^0.9.1"
   },
   "eslintConfig": {
-    "extends": [
+    "parserOptions":{
+      "ecmaVersion": 12 
+    },
+     "extends": [
       "@open-wc/eslint-config",
       "eslint-config-prettier"
     ]
