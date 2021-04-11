@@ -1,4 +1,4 @@
-# OutTeamWork (OTW)
+# OurTeamWork (OTW)
 
 This project helps a group of users to collect data securely and keep it
 in sync with a Google spreadsheet.
