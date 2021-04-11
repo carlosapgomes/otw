@@ -9,13 +9,20 @@ in sync with a Google spreadsheet.
 
 Clone this project and `cd` into its folder.
 
+Edit `config/otwConfig.js` and set the `projectOwner` and `appAdmin` email
+addresses.
+
 ### Firebase project
 
 Create a new firebase project. In the project's console, create a new service
 account with 'Reader' role. Take note of the service account email address (a
 Google spreadsheet shall be shared with this address before adding any data).
 
-Download the service account key and save it in the local `config` folder.
+Create a `config/firebaseAppConfig.js`file and set all the Firebase config
+options (see `config/firebaseAppConfig_example.js` for the required fields).
+
+Download the service account key and save it in the local file
+`config/otw-hgrs-sheets.json`.
 
 Enable the Sheets API in the GCP console page for the newly created project.
 
@@ -27,8 +34,8 @@ In the project folder add this key to the functions environment variables:
 
 `firebase functions:config:set sendgrid.apikey="your-sendgrid-api-key"`
 
-Add the admin email as a verified sender in the Sendgrid control panel (Sender
-Authentication menu option).
+Add `appAdmin` email address as a verified sender in the Sendgrid control
+panel (Sender Authentication menu option).
 
 ## Quickstart
 
