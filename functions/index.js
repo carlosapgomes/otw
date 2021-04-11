@@ -1,22 +1,22 @@
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
-const { google } = require('googleapis');
-const Admin = require('firebase-admin');
-const functions = require('firebase-functions');
-const sgMail = require('@sendgrid/mail');
-const nanoid = require('nanoid');
-const generator = require('nanoid/generate');
-const numbers = require('nanoid-dictionary/numbers');
-const authGSheets = require('./authGSheets.js');
-const firebaseAppConfig = require('../firebaseAppConfig.js');
-const otwConfig = require('../otwConfig.js');
+import { google } from 'googleapis';
+import * as Admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
+import * as sgMail from '@sendgrid/mail';
+import * as nanoid from 'nanoid';
+import * as generator from 'nanoid/generate';
+import { numbers } from 'nanoid-dictionary/numbers';
+import * as authGSheets from './authGSheets.js';
+import * as firebaseAppConfig from '../firebaseAppConfig.js';
+import * as otwConfig from '../otwConfig.js';
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
 const admin = Admin.initializeApp();
 
 // on new user added by admin
-exports.addNewUser = functions
+export const addNewUser = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -76,7 +76,7 @@ exports.addNewUser = functions
   });
 
 // on update user
-exports.updateUser = functions
+export const updateUser = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -148,7 +148,7 @@ exports.updateUser = functions
   });
 
 // on new procedure added
-exports.addNewProcedure = functions
+export const addNewProcedure = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -208,7 +208,7 @@ exports.addNewProcedure = functions
   });
 
 // on new procedure added
-exports.updateProcedure = functions
+export const updateProcedure = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
