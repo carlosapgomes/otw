@@ -1,22 +1,22 @@
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
-import { google } from 'googleapis';
-import * as Admin from 'firebase-admin';
-import * as functions from 'firebase-functions';
-import * as sgMail from '@sendgrid/mail';
-import * as nanoid from 'nanoid';
-import * as generator from 'nanoid/generate';
-import { numbers } from 'nanoid-dictionary/numbers';
-import * as authGSheets from './authGSheets.js';
-import * as firebaseAppConfig from '../config/firebaseAppConfig.js';
-import * as otwConfig from '../config/otwConfig.js';
+const { google } = require('googleapis');
+const Admin = require('firebase-admin');
+const functions = require('firebase-functions');
+const sgMail = require('@sendgrid/mail');
+const nanoid = require('nanoid');
+const generator = require('nanoid/generate');
+const { numbers } = require('nanoid-dictionary/numbers');
+const authGSheets = require('./authGSheets.js');
+const firebaseAppConfig = require('../config/firebaseAppConfig.json');
+const otwConfig = require('../config/otwConfig.json');
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
 const admin = Admin.initializeApp();
 
 // on new user added by admin
-export const addNewUser = functions
+exports.addNewUser = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -76,7 +76,7 @@ export const addNewUser = functions
   });
 
 // on update user
-export const updateUser = functions
+exports.updateUser = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -148,7 +148,7 @@ export const updateUser = functions
   });
 
 // on new procedure added
-export const addNewProcedure = functions
+exports.addNewProcedure = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
@@ -208,7 +208,7 @@ export const addNewProcedure = functions
   });
 
 // on new procedure added
-export const updateProcedure = functions
+exports.updateProcedure = functions
   .runWith({
     timeoutSeconds: 60,
     memory: '256MB',
