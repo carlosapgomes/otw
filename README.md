@@ -17,7 +17,7 @@ set the `projectOwner` and `appAdmin` email addresses.
 Create a new firebase project.
 
 Create a `config/firebaseAppConfig.json`file and set all the Firebase config
-options (see `config/firebaseAppConfig_example.json` for the required fields).
+options (see `config/firebaseAppConfig-example.json` for the required fields).
 
 Download the project adminsdk service account key and save it to
 `config/otw-firebase-serviceaccount.json`.

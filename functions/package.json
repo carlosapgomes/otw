@@ -13,7 +13,6 @@
     "node": "12"
   },
   "main": "index.js",
-  "type": "module",
   "dependencies": {
     "@sendgrid/mail": "^7.4.2",
     "crypto-random-string": "^4.0.0",

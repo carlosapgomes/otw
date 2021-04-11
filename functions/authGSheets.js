@@ -1,9 +1,9 @@
-import { google } from 'googleapis';
+const { google } = require('googleapis');
 // import service account key
-import * as key from '../config/otw-hgrs-sheets.json';
+const key = require('../config/otw-hgrs-sheets.json');
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-export const authenticate = async () => {
+exports.authenticate = async () => {
   const auth = new google.auth.JWT(
     key.client_email,
     null,
