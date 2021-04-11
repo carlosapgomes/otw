@@ -24,3 +24,5 @@ storybook-static
 firebaseAppConfig.js
 yarn-error.log
 otwConfig.js
+otw-hgrs-sheets.json
+otw-hgrs-firebase-serviceaccount.json
