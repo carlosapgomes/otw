@@ -21,8 +21,11 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-let email;
-let name;
+let email = '';
+let displayName = '';
+let phoneNumber = '';
+let isEnabled = false;
+let isAdmin = false;
 rl.question('Email address: ', e => {
   if (validateEmail(e)) {
     email = e;
@@ -34,7 +37,7 @@ rl.question('Email address: ', e => {
   }
   rl.question('User name ', n => {
     if (n.length >= 3) {
-      name = n;
+      displayName = n;
       // rl.write(name);
       rl.close();
     } else {
@@ -42,18 +45,64 @@ rl.question('Email address: ', e => {
       console.log('Invalid user name');
       process.exit(1);
     }
+    rl.question('Phone number: ', phone => {
+      if (phone.length > 7) {
+        phoneNumber = phone;
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('Invalid phone number');
+        process.exit(1);
+      }
+      rl.question('Is enabled (y/n)', enabled => {
+        switch (String(enabled).toLowerCase()) {
+          case 'y':
+            isEnabled = true;
+            break;
+          case 'n':
+            isEnabled = false;
+            break;
+          default:
+            // eslint-disable-next-line no-console
+            console.log('Invalid answer');
+            process.exit(1);
+        }
+        rl.question('Is admin (y/n)', adm => {
+          switch (String(adm).toLowerCase()) {
+            case 'y':
+              isAdmin = true;
+              break;
+            case 'n':
+              isAdmin = false;
+              break;
+            default:
+              // eslint-disable-next-line no-console
+              console.log('Invalid answer');
+              process.exit(1);
+          }
+        });
+      });
+    });
   });
 });
 rl.on('close', () => {
   // eslint-disable-next-line no-console
   console.log('email: ', email);
   // eslint-disable-next-line no-console
-  console.log('name: ', name);
+  console.log('name: ', displayName);
+  // eslint-disable-next-line no-console
+  console.log('phone: ', phoneNumber);
+  // eslint-disable-next-line no-console
+  console.log('isEnabled: ', isEnabled);
+  // eslint-disable-next-line no-console
+  console.log('isAdmin: ', isAdmin);
   const ref = admin.database().ref();
   const newKey = ref.child('users').push().key;
   const newUser = {
     email,
-    name,
+    displayName,
+    phoneNumber,
+    isEnabled,
+    isAdmin,
   };
   ref
     .child('users')
