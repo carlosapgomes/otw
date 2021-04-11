@@ -1,10 +1,34 @@
-<p align="center">
-  <img width="200" src="https://open-wc.org/hero.png"></img>
-</p>
+# OutTeamWork (OTW)
 
-## Open-wc Starter App
+This project helps a group of users to collect data securely and keep it
+in sync with a Google spreadsheet.
 
-[![Built with open-wc recommendations](https://img.shields.io/badge/built%20with-open--wc-blue.svg)](https://github.com/open-wc)
+## Prerequisites
+
+### Clone this project
+
+Clone this project and `cd` into its folder.
+
+### Firebase project
+
+Create a new firebase project. In the project's console, create a new service
+account with 'Reader' role. Take note of the service account email address (a
+Google spreadsheet shall be shared with this address before adding any data).
+
+Download the service account key and save it in the local `config` folder.
+
+Enable the Sheets API in the GCP console page for the newly created project.
+
+### Sendgrid account
+
+Create a free Sendgrid account and download its API key.
+
+In the project folder add this key to the functions environment variables:
+
+`firebase functions:config:set sendgrid.apikey="your-sendgrid-api-key"`
+
+Add the admin email as a verified sender in the Sendgrid control panel (Sender
+Authentication menu option).
 
 ## Quickstart
 
