@@ -9,8 +9,8 @@ import * as nanoid from 'nanoid';
 import * as generator from 'nanoid/generate';
 import { numbers } from 'nanoid-dictionary/numbers';
 import * as authGSheets from './authGSheets.js';
-import * as firebaseAppConfig from '../firebaseAppConfig.js';
-import * as otwConfig from '../otwConfig.js';
+import * as firebaseAppConfig from '../config/firebaseAppConfig.js';
+import * as otwConfig from '../config/otwConfig.js';
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
 const admin = Admin.initializeApp();
