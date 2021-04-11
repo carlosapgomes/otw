@@ -31,6 +31,7 @@
   "description": "Webcomponent otw-app following open-wc recommendations",
   "author": "otw-app",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "firebase": "^8.3.2",
     "lit-element": "^2.4.0",
