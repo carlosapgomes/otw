@@ -25,4 +25,8 @@ firebaseAppConfig.js
 yarn-error.log
 otwConfig.js
 otw-hgrs-sheets.json
+otw-hgrs-sheets.js
+firebaseAppConfig.json
+otw-firebase-serviceaccount.json
+otw-firebase-serviceaccount.js
 otw-hgrs-firebase-serviceaccount.json
