@@ -9,15 +9,15 @@ in sync with a Google spreadsheet.
 
 Clone this project and `cd` into its folder.
 
-Edit `config/otwConfig.js` and set the `projectOwner` and `appAdmin` email
-addresses.
+Create a file `config/otwConfig.json` (see the example in that folder) and
+set the `projectOwner` and `appAdmin` email addresses.
 
 ### Firebase project
 
 Create a new firebase project.
 
-Create a `config/firebaseAppConfig.js`file and set all the Firebase config
-options (see `config/firebaseAppConfig_example.js` for the required fields).
+Create a `config/firebaseAppConfig.json`file and set all the Firebase config
+options (see `config/firebaseAppConfig_example.json` for the required fields).
 
 Download the project adminsdk service account key and save it to
 `config/otw-firebase-serviceaccount.json`.
