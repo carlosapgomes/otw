@@ -48,7 +48,9 @@ panel (Sender Authentication menu option).
 
 From the project root folder, create the first admin user with the command:
 
-`node createAdmin.js`
+`node addUser.js`
+
+Answer 'y' to `Is enabled?` and to `Is admin?`.
 
 ## Quickstart
 

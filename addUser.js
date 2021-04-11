@@ -53,7 +53,7 @@ rl.question('Email address: ', e => {
         console.log('Invalid phone number');
         process.exit(1);
       }
-      rl.question('Is enabled (y/n)', enabled => {
+      rl.question('Is enabled (y/n)? ', enabled => {
         switch (String(enabled).toLowerCase()) {
           case 'y':
             isEnabled = true;
@@ -66,7 +66,7 @@ rl.question('Email address: ', e => {
             console.log('Invalid answer');
             process.exit(1);
         }
-        rl.question('Is admin (y/n)', adm => {
+        rl.question('Is admin (y/n)? ', adm => {
           switch (String(adm).toLowerCase()) {
             case 'y':
               isAdmin = true;
