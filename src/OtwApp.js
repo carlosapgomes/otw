@@ -2,7 +2,7 @@ import {installRouter} from 'pwa-helpers/router.js';
 import {LitElement, html} from 'lit-element';
 import {classMap} from 'lit-html/directives/class-map.js';
 import {templateLogin} from './templateLogin.js';
-import {firebaseAppConfig} from '../firebaseAppConfig.js';
+import {firebaseAppConfig} from '../config/firebaseAppConfig.js';
 
 let auth = null;
 let db = null;
