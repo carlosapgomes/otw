@@ -1,14 +1,14 @@
-import {installRouter} from 'pwa-helpers/router.js';
-import {LitElement, html} from 'lit-element';
-import {classMap} from 'lit-html/directives/class-map.js';
-import {templateLogin} from './templateLogin.js';
-import {firebaseAppConfig} from '../config/firebaseAppConfig.js';
+/* eslint-disable lit-a11y/anchor-is-valid */
+import { installRouter } from 'pwa-helpers/router.js';
+import { LitElement, html } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map.js';
+import { templateLogin } from './templateLogin.js';
+import { firebaseAppConfig } from '../config/firebaseAppConfig.js';
 
 let auth = null;
 let db = null;
 
 export class OtwApp extends LitElement {
-
   // use lightDOM
   createRenderRoot() {
     return this;
@@ -16,30 +16,30 @@ export class OtwApp extends LitElement {
 
   static get properties() {
     return {
-      title: {type: String},
-      _page: {type: String},
-      _burgerActive: {type: Boolean},
-      _user: {type: Object},
-      _loggedIn: {type: Boolean},
-      _isAdmin: {type: Boolean},
-      _toggleModal: {type: Boolean},
-      _modalMsg: {type: String},
-      _spinnerHidden: {type: Boolean},
-      _procedures: {type: Array},
-      _showProcedureForm: {type: Boolean},
-      _currentProcedure: {type: Object},
-      _currentProceduresDate: {type: String},
-      _adminDropDownOpen: {type: Boolean},
-      _users: {type: Array},
-      _showUserForm: {type: Boolean},
-      _currentEditUser: {type: Object},
-      _toggleResetPwModal: {type: Boolean},
-      _doctors: {type: Array},
-      _showDoctorForm: {type: Boolean},
-      _currentEditDoctor: {type: Object},
-      _proceduresTypes: {type: Array},
-      _showProcTypeForm: {type: Boolean},
-      _currentEditProcType: {type: Object},
+      title: { type: String },
+      _page: { type: String },
+      _burgerActive: { type: Boolean },
+      _user: { type: Object },
+      _loggedIn: { type: Boolean },
+      _isAdmin: { type: Boolean },
+      _toggleModal: { type: Boolean },
+      _modalMsg: { type: String },
+      _spinnerHidden: { type: Boolean },
+      _procedures: { type: Array },
+      _showProcedureForm: { type: Boolean },
+      _currentProcedure: { type: Object },
+      _currentProceduresDate: { type: String },
+      _adminDropDownOpen: { type: Boolean },
+      _users: { type: Array },
+      _showUserForm: { type: Boolean },
+      _currentEditUser: { type: Object },
+      _toggleResetPwModal: { type: Boolean },
+      _doctors: { type: Array },
+      _showDoctorForm: { type: Boolean },
+      _currentEditDoctor: { type: Object },
+      _proceduresTypes: { type: Array },
+      _showProcTypeForm: { type: Boolean },
+      _currentEditProcType: { type: Object },
     };
   }
 
@@ -92,10 +92,14 @@ export class OtwApp extends LitElement {
     // add data store event listeners
 
     // Procedures
-    this.addEventListener('update-procedures-list',
-      this._updateTodayProceduresList);
-    this.addEventListener('update-procedures-list-by-date',
-      this._updateProceduresListByDate);
+    this.addEventListener(
+      'update-procedures-list',
+      this._updateTodayProceduresList
+    );
+    this.addEventListener(
+      'update-procedures-list-by-date',
+      this._updateProceduresListByDate
+    );
     this.addEventListener('edit-procedure', this._editProcedure);
     this.addEventListener('add-procedure', this._loadShowProcForm);
     this.addEventListener('save-proctype-form', this._saveProcedure);
@@ -125,8 +129,10 @@ export class OtwApp extends LitElement {
     });
 
     // procedures types
-    this.addEventListener('update-procedures-types-list',
-      this._updateProcTypesList);
+    this.addEventListener(
+      'update-procedures-types-list',
+      this._updateProcTypesList
+    );
     this.addEventListener('edit-procedure-type', this._editProcType);
     this.addEventListener('add-procedure-type', this._loadShowProcTypeForm);
     this.addEventListener('save-procedure-type-form', this._saveProcType);
@@ -155,7 +161,8 @@ export class OtwApp extends LitElement {
     document.getElementById('password').addEventListener('focus', e => {
       // @ts-ignore
       const rect = e.target.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       const topPos = rect.top + scrollTop;
       window.scrollTo(0, topPos);
     });
@@ -210,7 +217,8 @@ export class OtwApp extends LitElement {
             // @ts-ignore
             if (!idTokenResult.claims.email_verified) {
               auth.signOut();
-              this._modalMsg = 'Seu email ainda não foi confirmado. Verifique sua caixa postal.';
+              this._modalMsg =
+                'Seu email ainda não foi confirmado. Verifique sua caixa postal.';
               this._toggleModal = true;
               return;
             }
@@ -236,7 +244,7 @@ export class OtwApp extends LitElement {
             this._spinnerHidden = true;
             db.ref(`metadata/${user.uid}`).on('value', snap => {
               if (snap.exists()) {
-                const {revokeTime} = snap.val();
+                const { revokeTime } = snap.val();
                 const utc = Date.parse(idTokenResult.authTime) / 1000;
                 if (utc < revokeTime) {
                   this._modalMsg =
@@ -327,7 +335,7 @@ export class OtwApp extends LitElement {
   _editProcedure(e) {
     // eslint-disable-next-line no-console
     // console.log(JSON.stringify(e.detail, null, 2));
-    this._currentProcedure = {...e.detail};
+    this._currentProcedure = { ...e.detail };
     // eslint-disable-next-line no-console
     // console.log(this._currentProcedure);
     this._loadShowProcForm();
@@ -335,7 +343,11 @@ export class OtwApp extends LitElement {
 
   _saveProcedure(e) {
     // console.log(JSON.stringify(e, null, 2));
-    const proc = {...e.detail, user: this._user.displayName, uid: this._user.uid};
+    const proc = {
+      ...e.detail,
+      user: this._user.displayName,
+      uid: this._user.uid,
+    };
     let procRef;
     if (proc.key) {
       // get current procedure db reference
@@ -343,13 +355,13 @@ export class OtwApp extends LitElement {
       // update local procedures array
       this._procedures = this._procedures.map(p => {
         if (p.key === proc.key) {
-          return {...proc};
+          return { ...proc };
         }
         return p;
       });
     } else {
       // get a new procedure reference from DB
-      const {key} = db.ref('/procedures').push();
+      const { key } = db.ref('/procedures').push();
       procRef = db.ref(`/procedures/${key}`);
       proc.key = key;
       // add procedure to local procedures array
@@ -419,7 +431,7 @@ export class OtwApp extends LitElement {
   _editUser(e) {
     // eslint-disable-next-line no-console
     // console.log(JSON.stringify(e.detail, null, 2));
-    this._currentEditUser = {...e.detail};
+    this._currentEditUser = { ...e.detail };
     // eslint-disable-next-line no-console
     // console.log(this._currentEditUser);
     this._loadShowUserForm();
@@ -429,7 +441,7 @@ export class OtwApp extends LitElement {
     if (this._isAdmin && this._user.isEnabled) {
       // console.log(JSON.stringify(e, null, 2));
       this.dispatchEvent(new CustomEvent('show-spinner'));
-      const u = {...e.detail, adminName: this._user.displayName};
+      const u = { ...e.detail, adminName: this._user.displayName };
       let userRef;
       if (u.key) {
         // get current procedure db reference
@@ -437,14 +449,14 @@ export class OtwApp extends LitElement {
         // update local procedures array
         this._users = this._users.map(usr => {
           if (usr.key === u.key) {
-            return {...u};
+            return { ...u };
           }
           return usr;
         });
         // console.log(JSON.stringify(this._users, null, 2));
       } else {
         // get a new user reference from DB
-        const {key} = db.ref('/users').push();
+        const { key } = db.ref('/users').push();
         userRef = db.ref(`/users/${key}`);
         u.key = key;
         // add user to local users array
@@ -523,7 +535,7 @@ export class OtwApp extends LitElement {
   _editDoctor(e) {
     // eslint-disable-next-line no-console
     // console.log(JSON.stringify(e.detail, null, 2));
-    this._currentEditDoctor = {...e.detail};
+    this._currentEditDoctor = { ...e.detail };
     // eslint-disable-next-line no-console
     // console.log(this._currentEditDoctor);
     this._loadShowDoctorForm();
@@ -531,7 +543,7 @@ export class OtwApp extends LitElement {
 
   _saveDoctor(e) {
     this.dispatchEvent(new CustomEvent('show-spinner'));
-    const d = {...e.detail, adminName: this._user.displayName};
+    const d = { ...e.detail, adminName: this._user.displayName };
     let doctorRef;
     if (d.key) {
       // get current procedure db reference
@@ -539,13 +551,13 @@ export class OtwApp extends LitElement {
       // update local procedures array
       this._doctors = this._doctors.map(doc => {
         if (doc.key === d.key) {
-          return {...d};
+          return { ...d };
         }
         return doc;
       });
     } else {
       // get a new doctor reference from DB
-      const {key} = db.ref('/doctors').push();
+      const { key } = db.ref('/doctors').push();
       doctorRef = db.ref(`/doctors/${key}`);
       d.key = key;
       // add doctor to local doctors array
@@ -622,7 +634,7 @@ export class OtwApp extends LitElement {
   _editProcType(e) {
     // eslint-disable-next-line no-console
     // console.log(JSON.stringify(e.detail, null, 2));
-    this._currentEditProcType = {...e.detail};
+    this._currentEditProcType = { ...e.detail };
     // eslint-disable-next-line no-console
     // console.log(this._currentEditProcType);
     this._loadShowProcTypeForm();
@@ -630,7 +642,7 @@ export class OtwApp extends LitElement {
 
   _saveProcType(e) {
     this.dispatchEvent(new CustomEvent('show-spinner'));
-    const p = {...e.detail, adminName: this._user.displayName};
+    const p = { ...e.detail, adminName: this._user.displayName };
     let procTypeRef;
     if (p.key) {
       // get current procedure db reference
@@ -638,13 +650,13 @@ export class OtwApp extends LitElement {
       // update local procedures array
       this._proceduresTypes = this._proceduresTypes.map(proc => {
         if (proc.key === p.key) {
-          return {...p};
+          return { ...p };
         }
         return proc;
       });
     } else {
       // get a new proctype reference from DB
-      const {key} = db.ref('/procedurestypes').push();
+      const { key } = db.ref('/procedurestypes').push();
       procTypeRef = db.ref(`/procedurestypes/${key}`);
       p.key = key;
       // add procType to local proceduresTypes array
@@ -777,11 +789,13 @@ export class OtwApp extends LitElement {
             this._toggleModal = true;
             break;
           case 'auth/user-disabled':
-            this._modalMsg = 'Essa conta está bloqueada. Contacte o administrador.';
+            this._modalMsg =
+              'Essa conta está bloqueada. Contacte o administrador.';
             this._toggleModal = true;
             break;
           default:
-            this._modalMsg = 'Houve algum problema com o login. Contacte o administrador.';
+            this._modalMsg =
+              'Houve algum problema com o login. Contacte o administrador.';
             this._toggleModal = true;
             // eslint-disable-next-line no-console
             console.log(errorMessage);
@@ -839,21 +853,25 @@ export class OtwApp extends LitElement {
         aria-label="main navigation"
       >
         <div class="navbar-brand">
-          <a class="navbar-item has-text-black" 
-            href="#" style="font-weight:bold;">
+          <a
+            class="navbar-item has-text-black"
+            href="#"
+            style="font-weight:bold;"
+          >
             OurTeam.Work
           </a>
 
           <a
             role="button"
-            class="navbar-burger burger ${classMap({'is-active': this._burgerActive})}"
+            class="navbar-burger burger ${classMap({
+              'is-active': this._burgerActive,
+            })}"
             id="navbarburger"
             aria-label="menu"
             aria-expanded="false"
             data-target="navbarBasicMenu"
             @click="${this._navBarBurgerClicked}"
             @keydown="${this._navBarBurgerClicked}"
-
           >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -863,15 +881,17 @@ export class OtwApp extends LitElement {
 
         <div
           id="navbarBasicMenu"
-          class="navbar-menu ${classMap({'is-active': this._burgerActive})}"
+          class="navbar-menu ${classMap({ 'is-active': this._burgerActive })}"
         >
-          <div class="navbar-start ${classMap({'is-hidden': !this._loggedIn})}">
+          <div
+            class="navbar-start ${classMap({ 'is-hidden': !this._loggedIn })}"
+          >
             <a
               class="navbar-item"
               href="/procsview"
               @click="${() => {
-        this._burgerActive = false;
-      }}"
+                this._burgerActive = false;
+              }}"
             >
               Procedimentos
             </a>
@@ -879,19 +899,18 @@ export class OtwApp extends LitElement {
             <div
               id="adminmenu"
               class="navbar-item has-dropdown ${classMap({
-        'is-hidden': !this._isAdmin,
-        'is-active': this._adminDropDownOpen,
-      })}"
+                'is-hidden': !this._isAdmin,
+                'is-active': this._adminDropDownOpen,
+              })}"
             >
               <a
                 class="navbar-link"
                 @click="${() => {
-        this._adminDropDownOpen = !this._adminDropDownOpen;
-      }}"
+                  this._adminDropDownOpen = !this._adminDropDownOpen;
+                }}"
                 @keydown="${() => {
-        this._adminDropDownOpen = !this._adminDropDownOpen;
-      }}"
-
+                  this._adminDropDownOpen = !this._adminDropDownOpen;
+                }}"
               >
                 Admin
               </a>
@@ -901,9 +920,9 @@ export class OtwApp extends LitElement {
                   class="navbar-item"
                   href="/usersview"
                   @click="${() => {
-        this._adminDropDownOpen = false;
-        this._burgerActive = false;
-      }}"
+                    this._adminDropDownOpen = false;
+                    this._burgerActive = false;
+                  }}"
                 >
                   Usuários
                 </a>
@@ -911,9 +930,9 @@ export class OtwApp extends LitElement {
                   class="navbar-item"
                   href="/doctorsview"
                   @click="${() => {
-        this._adminDropDownOpen = false;
-        this._burgerActive = false;
-      }}"
+                    this._adminDropDownOpen = false;
+                    this._burgerActive = false;
+                  }}"
                 >
                   Médicos
                 </a>
@@ -921,9 +940,9 @@ export class OtwApp extends LitElement {
                   class="navbar-item"
                   href="/procedurestypesview"
                   @click="${() => {
-        this._adminDropDownOpen = false;
-        this._burgerActive = false;
-      }}"
+                    this._adminDropDownOpen = false;
+                    this._burgerActive = false;
+                  }}"
                 >
                   Tipos de Procedimentos
                 </a>
@@ -937,7 +956,9 @@ export class OtwApp extends LitElement {
                 <a
                   id="logoutbtn"
                   href="/home"
-                  class="button is-light ${classMap({'is-hidden': !this._loggedIn})}"
+                  class="button is-light ${classMap({
+                    'is-hidden': !this._loggedIn,
+                  })}"
                   @click="${this._logoutClicked}"
                 >
                   Logout
@@ -945,10 +966,12 @@ export class OtwApp extends LitElement {
                 <a
                   id="loginbtn"
                   href="/loginview"
-                  class="button is-light ${classMap({'is-hidden': this._loggedIn})}"
+                  class="button is-light ${classMap({
+                    'is-hidden': this._loggedIn,
+                  })}"
                   @click=${() => {
-        this._burgerActive = false;
-      }}
+                    this._burgerActive = false;
+                  }}
                 >
                   Login
                 </a>
@@ -961,25 +984,23 @@ export class OtwApp extends LitElement {
         <section
           id="home"
           class="section container has-text-centered ${classMap({
-        'is-hidden': this._page !== 'home',
-      })}"
+            'is-hidden': this._page !== 'home',
+          })}"
         >
           <div>
             <br />
             <br />
             <br />
             <br />
-            <h1 class="title">
-              Cirurgia Vascular: Procedimentos Realizados
-            </h1>
+            <h1 class="title">Cirurgia Vascular: Procedimentos Realizados</h1>
           </div>
         </section>
 
         <section
           id="loginview"
           class="section ${classMap({
-        'is-hidden': this._page !== 'loginview',
-      })}"
+            'is-hidden': this._page !== 'loginview',
+          })}"
         >
           ${templateLogin}
         </section>
@@ -987,8 +1008,8 @@ export class OtwApp extends LitElement {
         <procs-view
           id="procsview"
           class="${classMap({
-        'is-hidden': this._page !== 'procsview',
-      })}"
+            'is-hidden': this._page !== 'procsview',
+          })}"
           .procedures="${this._procedures}"
           .date="${this._currentProceduresDate}"
         ></procs-view>
@@ -996,23 +1017,23 @@ export class OtwApp extends LitElement {
           id="usersview"
           .users="${this._users}"
           class="${classMap({
-        'is-hidden': this._page !== 'usersview',
-      })}"
+            'is-hidden': this._page !== 'usersview',
+          })}"
         ></users-view>
         <doctors-view
           id="doctorsview"
           .doctors="${this._doctors}"
           class="${classMap({
-        'is-hidden': this._page !== 'doctorsview',
-      })}"
+            'is-hidden': this._page !== 'doctorsview',
+          })}"
         >
         </doctors-view>
         <procedures-view
           id="procedurestypesview"
           .procedures="${this._proceduresTypes}"
           class="${classMap({
-        'is-hidden': this._page !== 'procedurestypesview',
-      })}"
+            'is-hidden': this._page !== 'procedurestypesview',
+          })}"
         ></procedures-view>
       </main>
       <footer
@@ -1021,16 +1042,18 @@ export class OtwApp extends LitElement {
       >
         <div class="column">&copy; <small>CG 2021</small></div>
       </footer>
-      <div id="modalmsg" class="modal ${classMap({'is-active': this._toggleModal})}">
+      <div
+        id="modalmsg"
+        class="modal ${classMap({ 'is-active': this._toggleModal })}"
+      >
         <div
           class="modal-background"
           @click="${() => {
-        this._toggleModal = false;
-      }}"
+            this._toggleModal = false;
+          }}"
           @keydown="${() => {
-        this._toggleModal = false;
-      }}"
-
+            this._toggleModal = false;
+          }}"
         ></div>
         <div class="modal-content">
           <div class="box container has-text-centered">${this._modalMsg}</div>
@@ -1038,26 +1061,27 @@ export class OtwApp extends LitElement {
         <button
           class="modal-close is-large"
           @click="${() => {
-        this._toggleModal = false;
-      }}"
+            this._toggleModal = false;
+          }}"
           @keydown="${() => {
-        this._toggleModal = false;
-      }}"
-
+            this._toggleModal = false;
+          }}"
           aria-label="close"
         ></button>
       </div>
 
-      <div id="resetpwmodal" class="modal ${classMap({'is-active': this._toggleResetPwModal})}">
+      <div
+        id="resetpwmodal"
+        class="modal ${classMap({ 'is-active': this._toggleResetPwModal })}"
+      >
         <div
           class="modal-background"
           @click="${() => {
-        this._toggleResetPwModal = false;
-      }}"
+            this._toggleResetPwModal = false;
+          }}"
           @keydown="${() => {
-        this._toggleResetPwModal = false;
-      }}"
-
+            this._toggleResetPwModal = false;
+          }}"
         ></div>
         <div class="modal-content">
           <div class="box container has-text-centered">
@@ -1122,35 +1146,37 @@ export class OtwApp extends LitElement {
         <button
           class="modal-close is-large"
           @click="${() => {
-        this._toggleResetPwModal = false;
-      }}"
+            this._toggleResetPwModal = false;
+          }}"
           aria-label="close"
         ></button>
       </div>
 
       <proc-form
-        class="${classMap({'is-hidden': !this._showProcedureForm})}"
+        class="${classMap({ 'is-hidden': !this._showProcedureForm })}"
         ?activate="${this._showProcedureForm}"
         .procedure="${this._currentProcedure}"
         .doctors="${this._doctors}"
         .proctypes="${this._proceduresTypes}"
       ></proc-form>
       <user-form
-        class="${classMap({'is-hidden': !this._showUserForm})}"
+        class="${classMap({ 'is-hidden': !this._showUserForm })}"
         ?activate="${this._showUserForm}"
         .user="${this._currentEditUser}"
       ></user-form>
       <doctor-form
-        class="${classMap({'is-hidden': !this._showDoctorForm})}"
+        class="${classMap({ 'is-hidden': !this._showDoctorForm })}"
         ?activate="${this._showDoctorForm}"
         .doctor="${this._currentEditDoctor}"
       ></doctor-form>
       <proctype-form
-        class="${classMap({'is-hidden': !this._showProcTypeForm})}"
+        class="${classMap({ 'is-hidden': !this._showProcTypeForm })}"
         ?activate="${this._showProcTypeForm}"
         .proceduretype="${this._currentEditProcType}"
       ></proctype-form>
-      <nefro-spinner class="${classMap({'is-hidden': this._spinnerHidden})}"></nefro-spinner>
+      <otw-spinner
+        class="${classMap({ 'is-hidden': this._spinnerHidden })}"
+      ></otw-spinner>
     `;
   }
 }
