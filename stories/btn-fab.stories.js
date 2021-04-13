@@ -8,7 +8,7 @@ export default {
 };
 
 function Template() {
-  return html`<btn-fab><btn-fab></btn-fab></btn-fab>`;
+  return html`<btn-fab></btn-fab>`;
 }
 
 export const App = Template.bind({});
