@@ -1,5 +1,5 @@
-import {html, LitElement} from 'lit-element';
-import {classMap} from 'lit-html/directives/class-map.js';
+import { html, LitElement } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map.js';
 
 export class ProcTypeForm extends LitElement {
   // use lightDOM
@@ -9,10 +9,10 @@ export class ProcTypeForm extends LitElement {
 
   static get properties() {
     return {
-      proceduretype: {type: Object},
-      activate: {type: Boolean},
-      _procedure: {type: String},
-      _code: {type: String},
+      proceduretype: { type: Object },
+      activate: { type: Boolean },
+      _procedure: { type: String },
+      _code: { type: String },
     };
   }
 
@@ -27,8 +27,9 @@ export class ProcTypeForm extends LitElement {
   updated(changedProperties) {
     if (changedProperties.has('proceduretype')) {
       if (this.proceduretype) {
-        this._procedure =
-          this.proceduretype.procedure ? this.proceduretype.procedure : '';
+        this._procedure = this.proceduretype.procedure
+          ? this.proceduretype.procedure
+          : '';
         this._code = this.proceduretype.code ? this.proceduretype.code : '';
       }
     }
@@ -39,8 +40,10 @@ export class ProcTypeForm extends LitElement {
     this._clearFields();
     // fire event to hide procedure form from parent's view
     this.dispatchEvent(
-      new CustomEvent('close-procedure-type-form',
-        {bubbles: true, composed: true}),
+      new CustomEvent('close-procedure-type-form', {
+        bubbles: true,
+        composed: true,
+      })
     );
   }
 
@@ -81,7 +84,7 @@ export class ProcTypeForm extends LitElement {
         detail: p,
         bubbles: true,
         composed: true,
-      }),
+      })
     );
     // clear and close form
     this._closeForm();
@@ -89,13 +92,16 @@ export class ProcTypeForm extends LitElement {
 
   render() {
     return html`
-      <div class="modal ${classMap({'is-active': this.activate})}">
+      <div class="modal ${classMap({ 'is-active': this.activate })}">
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Usuário</p>
-            <button class="delete"
-            aria-label="close" @click="${this._closeForm}"></button>
+            <button
+              class="delete"
+              aria-label="close"
+              @click="${this._closeForm}"
+            ></button>
           </header>
           <section class="modal-card-body">
             <form id="proctype-form">
@@ -121,14 +127,13 @@ export class ProcTypeForm extends LitElement {
             </form>
           </section>
           <footer class="modal-card-foot">
-            <button class="button is-success"
-            @click="${this._saveForm}">Gravar</button>
-            <button class="button"
-            @click="${this._closeForm}">Cancelar</button>
+            <button class="button is-success" @click="${this._saveForm}">
+              Gravar
+            </button>
+            <button class="button" @click="${this._closeForm}">Cancelar</button>
           </footer>
         </div>
       </div>
     `;
   }
 }
-

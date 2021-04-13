@@ -1,3 +1,3 @@
-import {ProcTypeForm} from './ProcTypesForm.js';
+import { ProcTypeForm } from './ProcTypeForm.js';
 
 customElements.define('proctype-form', ProcTypeForm);
