@@ -157,7 +157,7 @@ export class OtwApp extends LitElement {
     });
 
     // scroll to the bottom when password input has focus
-    // to avoid android keyboard from covering it
+    // to avoid covering by android keyboard
     document.getElementById('password').addEventListener('focus', e => {
       // @ts-ignore
       const rect = e.target.getBoundingClientRect();
