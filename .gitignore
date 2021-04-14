@@ -22,13 +22,12 @@
 
 storybook-static
 yarn-error.log
-otw-hgrs-sheets.json
-otw-hgrs-sheets.js
+otw-sheets-serviceaccount.json
+otw-sheets-serviceaccount.js
 firebaseAppConfig.json
 firebaseAppConfig.js
 otw-firebase-serviceaccount.json
 otw-firebase-serviceaccount.js
-otw-hgrs-firebase-serviceaccount.json
 otwConfig.json
 otwConfig.js
 firebase-debug.log
