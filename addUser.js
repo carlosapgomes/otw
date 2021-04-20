@@ -5,7 +5,7 @@ const admin = require('firebase-admin');
 // import * as serviceAccount from "./config/otw-firebase-serviceaccount.js";
 const serviceAccount = require('./config/otw-firebase-serviceaccount.json');
 // import * as firebaseAppConfig from "./config/firebaseAppConfig.js";
-const firebaseAppConfig = require('./config/firebaseAppConfig.json');
+const firebaseAppConfig = require('./config/firebaseAppConfig.js');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

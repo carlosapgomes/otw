@@ -9,7 +9,7 @@ const nanoid = require('nanoid');
 const generator = require('nanoid/generate');
 const { numbers } = require('nanoid-dictionary/numbers');
 const authGSheets = require('./authGSheets.js');
-const firebaseAppConfig = require('../config/firebaseAppConfig.json');
+const firebaseAppConfig = require('../config/firebaseAppConfig.js');
 const otwConfig = require('../config/otwConfig.json');
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
