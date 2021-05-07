@@ -1,7 +1,7 @@
 # OurTeamWork (OTW)
 
-This project helps a group of users to collect data securely and keep it
-in sync with a Google spreadsheet.
+This project helps a group of health care workers to collect data about
+procedures securely and keep it in sync with a Google spreadsheet.
 
 ## Prerequisites
 
