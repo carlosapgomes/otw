@@ -1,4 +1,6 @@
 {
   "projectOwner": "project-owner@emailaddress.com",
-  "appAdmin": "app-admin@emailaddress.com"
+  "appAdmin": "app-admin@emailaddress.com",
+  "authDomain": "yyyyy.firebaseapp.com",
+  "databaseURL": "https://xxxxx.firebaseio.com"
 }

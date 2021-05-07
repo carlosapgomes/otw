@@ -1,15 +1,12 @@
 // import * as readline from "readline";
 const readline = require('readline');
-// import * as admin from "firebase-admin";
 const admin = require('firebase-admin');
-// import * as serviceAccount from "./config/otw-firebase-serviceaccount.js";
 const serviceAccount = require('./config/otw-firebase-serviceaccount.json');
-// import * as firebaseAppConfig from "./config/firebaseAppConfig.js";
-const firebaseAppConfig = require('./config/firebaseAppConfig.js');
+const otwConfig = require('./config/otwConfig.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: firebaseAppConfig.databaseURL,
+  databaseURL: otwConfig.databaseURL,
 });
 
 function validateEmail(e) {

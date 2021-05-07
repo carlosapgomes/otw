@@ -18,8 +18,11 @@ Create a new firebase project.
 
 Create a `config/firebaseAppConfig.js`file and set all the Firebase config
 options (see `config/firebaseAppConfig-example.js` for the required fields).
-The Firebase config options can be found in the project console after 
+The Firebase config options can be found in the project console after
 adding a new web app.
+
+Update `config/otwConfig.json` with `authDomain` and `databaseURL` from the
+file above.
 
 Download the project adminsdk service account key and save it to
 `config/otw-firebase-serviceaccount.json`.

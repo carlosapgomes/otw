@@ -9,7 +9,6 @@ const nanoid = require('nanoid');
 const generator = require('nanoid/generate');
 const { numbers } = require('nanoid-dictionary/numbers');
 const authGSheets = require('./authGSheets.js');
-const firebaseAppConfig = require('../config/firebaseAppConfig.js');
 const otwConfig = require('../config/otwConfig.json');
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
@@ -53,7 +52,7 @@ exports.addNewUser = functions
         console.log(JSON.stringify(user, null, 2));
         await admin.auth().setCustomUserClaims(user.uid, customClaims);
         const link = await admin.auth().generatePasswordResetLink(user.email, {
-          url: firebaseAppConfig.authDomain,
+          url: otwConfig.authDomain,
         });
         const msg = {
           to: user.email,
