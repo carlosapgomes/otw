@@ -32,11 +32,14 @@ account key and save it in the local file
 
 Enable the Sheets API in the GCP console page for the newly created project.
 
+Create a Google Spreadsheet with any regular Google account, share it
+with the above service account email address with an 'Editor' role.
+
 ### Sendgrid account
 
 Create a free Sendgrid account and download its API key.
 
-In the project folder add this key to the functions environment variables:
+In the project folder add the API key to the functions environment variables:
 
 `firebase functions:config:set sendgrid.apikey="your-sendgrid-api-key"`
 
@@ -57,13 +60,6 @@ Answer 'y' to `Is enabled?` and to `Is admin?`.
 
 ## Quickstart
 
-To get started:
-
-```bash
-npm init @open-wc
-# requires node 10 & npm 6 or higher
-```
-
 ## Scripts
 
 - `start` runs your app for development, reloading on file changes
@@ -72,8 +68,3 @@ npm init @open-wc
 - `test` runs your test suite with Web Test Runner
 - `lint` runs the linter for your project
 
-## Tooling configs
-
-For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
-
-If you customize the configuration a lot, you can consider moving them to individual files.
