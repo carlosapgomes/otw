@@ -7,4 +7,4 @@ const firebaseAppConfig = {
   messagingSenderId: 'xxxxxxxx',
   appId: 'very-long-app-id-hex',
 };
-module.exports = firebaseAppConfig;
+export { firebaseAppConfig };
