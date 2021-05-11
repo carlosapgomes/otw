@@ -29,9 +29,8 @@ Download the project adminsdk service account key and save it to
 
 In the project's console, create a new service account with 'Reader' role.
 Take note of the service account email address (a Google spreadsheet shall be
-shared with this address before adding any data). Download this service
-account key and save it in the local file
-`config/otw-sheets-serviceaccount.json`.
+shared with this address before adding any data). Create a new key for this
+account and save it in the file: `config/otw-sheets-serviceaccount.json`.
 
 Enable the Sheets API in the GCP console page for the newly created project.
 
