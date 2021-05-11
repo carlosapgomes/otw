@@ -35,7 +35,8 @@ account and save it in the file: `config/otw-sheets-serviceaccount.json`.
 Enable the Sheets API in the GCP console page for the newly created project.
 
 Create a Google Spreadsheet with any regular Google account, share it
-with the above service account email address with an 'Editor' role.
+with the above service account email address, allowing this account to edit
+the spreadsheet.
 
 ### Sendgrid account
 
