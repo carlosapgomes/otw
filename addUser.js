@@ -26,17 +26,14 @@ let isAdmin = false;
 rl.question('Email address: ', e => {
   if (validateEmail(e)) {
     email = e;
-    // rl.write(email);
   } else {
     // eslint-disable-next-line no-console
     console.log('Invalid email address');
     process.exit(1);
   }
-  rl.question('User name ', n => {
+  rl.question('User name: ', n => {
     if (n.length >= 3) {
       displayName = n;
-      // rl.write(name);
-      rl.close();
     } else {
       // eslint-disable-next-line no-console
       console.log('Invalid user name');
@@ -76,6 +73,7 @@ rl.question('Email address: ', e => {
               console.log('Invalid answer');
               process.exit(1);
           }
+          rl.close();
         });
       });
     });
@@ -83,15 +81,15 @@ rl.question('Email address: ', e => {
 });
 rl.on('close', () => {
   // eslint-disable-next-line no-console
-  console.log('email: ', email);
+  console.log('\n\nEmail: ', email);
   // eslint-disable-next-line no-console
-  console.log('name: ', displayName);
+  console.log('Name: ', displayName);
   // eslint-disable-next-line no-console
-  console.log('phone: ', phoneNumber);
+  console.log('Phone: ', phoneNumber);
   // eslint-disable-next-line no-console
-  console.log('isEnabled: ', isEnabled);
+  console.log('IsEnabled: ', isEnabled);
   // eslint-disable-next-line no-console
-  console.log('isAdmin: ', isAdmin);
+  console.log('IsAdmin: ', isAdmin);
   const ref = admin.database().ref();
   const newKey = ref.child('users').push().key;
   const newUser = {
