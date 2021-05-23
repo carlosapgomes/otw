@@ -6,14 +6,18 @@ const Admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const sgMail = require('@sendgrid/mail');
 const nanoid = require('nanoid');
-const generator = require('nanoid/generate');
-const { numbers } = require('nanoid-dictionary/numbers');
 const authGSheets = require('./authGSheets.js');
 const otwConfig = require('../config/otwConfig.json');
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
 const admin = Admin.initializeApp();
 
+const newPhoneNumber = () => {
+  const phoneNumberGenerated = String(
+    Math.floor(Math.random() * 900000000000000) + 100000000000000
+  );
+  return phoneNumberGenerated.padStart(15, '0');
+};
 // on new user added by admin
 exports.addNewUser = functions
   .runWith({
@@ -29,7 +33,7 @@ exports.addNewUser = functions
       return null;
     }
     if (!u.phoneNumber) {
-      u.phoneNumber = `+${generator(numbers, 15)}`;
+      u.phoneNumber = `+${newPhoneNumber()}`;
     } else if (u.phoneNumber.charAt(0) !== '+') {
       u.phoneNumber = `+${u.phoneNumber}`;
     }
@@ -101,7 +105,7 @@ exports.updateUser = functions
       return null;
     }
     if (!b.phoneNumber) {
-      a.phoneNumber = `+${generator(numbers, 15)}`;
+      a.phoneNumber = `+${newPhoneNumber()}`;
     } else if (a.phoneNumber.charAt(0) !== '+') {
       a.phoneNumber = `+${a.phoneNumber}`;
     }
