@@ -7,7 +7,7 @@ const functions = require('firebase-functions');
 const sgMail = require('@sendgrid/mail');
 const nanoid = require('nanoid');
 const authGSheets = require('./authGSheets.js');
-const otwConfig = require('../config/otwConfig.json');
+const otwConfig = require('./otwConfig.json');
 
 sgMail.setApiKey(functions.config().sendgrid.apikey);
 const admin = Admin.initializeApp();

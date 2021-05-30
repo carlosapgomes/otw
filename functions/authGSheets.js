@@ -1,6 +1,6 @@
 const { google } = require('googleapis');
 // import service account key
-const key = require('../config/otw-sheets-serviceaccount.json');
+const key = require('./otw-sheets-serviceaccount.json');
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 exports.authenticate = async () => {
