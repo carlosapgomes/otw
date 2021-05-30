@@ -2,7 +2,7 @@
 const readline = require('readline');
 const admin = require('firebase-admin');
 const serviceAccount = require('./config/otw-firebase-serviceaccount.json');
-const otwConfig = require('./config/otwConfig.json');
+const otwConfig = require('./functions/otwConfig.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
