@@ -9,7 +9,7 @@ procedures securely and keep it in sync with a Google spreadsheet.
 
 Clone this project and `cd` into its folder.
 
-Create a file `config/otwConfig.json` (see the example in that folder) and
+Create a file `functions/otwConfig.json` (see the example in that folder) and
 set the `projectOwner` and `appAdmin` email addresses.
 
 ### Firebase project
@@ -21,11 +21,11 @@ options (see `config/firebaseAppConfig-example.js` for the required fields).
 The Firebase config options can be found in the project console after
 adding a new web app.
 
-Update `config/otwConfig.json` with `authDomain` and `databaseURL` from the
+Update `functions/otwConfig.json` with `authDomain` and `databaseURL` from the
 file above.
 
 Download the project adminsdk service account key and save it to
-`config/otw-firebase-serviceaccount.json`.
+`functions/otw-firebase-serviceaccount.json`.
 
 In the project's console, create a new service account with 'Reader' role.
 Take note of the service account email address (a Google spreadsheet shall be
