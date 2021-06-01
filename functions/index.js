@@ -2,16 +2,29 @@
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 
 const { google } = require('googleapis');
-const Admin = require('firebase-admin');
+const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 const sgMail = require('@sendgrid/mail');
-const nanoid = require('nanoid');
 const authGSheets = require('./authGSheets.js');
 const otwConfig = require('./otwConfig.json');
 
-sgMail.setApiKey(functions.config().sendgrid.apikey);
-const admin = Admin.initializeApp();
+const characters =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const generateString = length => {
+  let result = new String();
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
 
+sgMail.setApiKey(functions.config().sendgrid.apikey);
+try {
+  admin.initializeApp();
+} catch (e) {
+  console.log('fb adin is initialized');
+}
 const newPhoneNumber = () => {
   const phoneNumberGenerated = String(
     Math.floor(Math.random() * 900000000000000) + 100000000000000
@@ -41,7 +54,7 @@ exports.addNewUser = functions
       email: u.email,
       emailVerified: false,
       phoneNumber: u.phoneNumber,
-      password: u.password || nanoid(30),
+      password: u.password || generateString(30), // random temp password
       displayName: u.displayName,
       disabled: false,
     };
