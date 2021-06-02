@@ -66,7 +66,7 @@ exports.addNewUser = functions
     try {
       user = await admin.auth().createUser(nu);
       if (user) {
-        console.log(JSON.stringify(user, null, 2));
+        //console.log(JSON.stringify(user, null, 2));
         await admin.auth().setCustomUserClaims(user.uid, customClaims);
         const link = await admin.auth().generatePasswordResetLink(user.email, {
           url: otwConfig.authDomain,
@@ -78,7 +78,7 @@ exports.addNewUser = functions
           subject: 'Configuração de senha',
           text: `Prezado usuário,\n sua conta foi adicionada em nosso sistema.\n
               Para configura sua senha basta clicar no seguinte link: ${link} .
-              \n\nAtt.\n\n ProdNefro Manager.`,
+              \n\nAtt.\n\n OurTeamWork Manager.`,
         };
         return await sgMail.send(msg);
       }
