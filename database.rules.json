@@ -30,8 +30,8 @@
       ".indexOn": ["procedure"]
     },
     "spreadsheet": {
-      ".read": "auth!== null && auth.token.isEnabled === true && auth.token.isAdmin === true && $typeid !== null",
-      ".write": "auth!== null && auth.token.isEnabled === true && auth.token.isAdmin === true && $typeid !== null"
+      ".read": "auth!== null && auth.token.isEnabled === true && auth.token.isAdmin === true",
+      ".write": "auth!== null && auth.token.isEnabled === true && auth.token.isAdmin === true"
     }
   }
 }
