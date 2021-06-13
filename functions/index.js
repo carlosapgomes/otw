@@ -177,7 +177,7 @@ exports.addNewProcedure = functions
       return null;
     }
     // get spreadsheetId from database
-    const ssRef = admin.database.ref('/spreadsheet/sheet1');
+    const ssRef = admin.database().ref('/spreadsheet/sheet1');
     let snap;
     let sheet;
     try {
