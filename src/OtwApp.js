@@ -667,7 +667,7 @@ export class OtwApp extends LitElement {
       .set(p)
       .then(() => {
         this._spinnerHidden = true;
-        this._modalMsg = 'Tipo de procedimento com sucesso!';
+        this._modalMsg = 'Tipo de procedimento gravado com sucesso!';
         this._toggleModal = true;
       })
       // eslint-disable-next-line no-shadow
