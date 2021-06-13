@@ -102,8 +102,8 @@ export class OtwApp extends LitElement {
     );
     this.addEventListener('edit-procedure', this._editProcedure);
     this.addEventListener('add-procedure', this._loadShowProcForm);
-    this.addEventListener('save-proctype-form', this._saveProcedure);
-    this.addEventListener('close-proctype-form', () => {
+    this.addEventListener('save-procedure-form', this._saveProcedure);
+    this.addEventListener('close-procedure-form', () => {
       this._currentProcedure = null;
       this._showProcedureForm = false;
     });
