@@ -734,16 +734,16 @@ export class OtwApp extends LitElement {
           this.dispatchEvent(new CustomEvent('update-doctors-list'));
         }
         break;
-      case 'procedurestypesview':
-        if (typeof customElements.get('procedures-view') === 'undefined') {
-          import('./procedures-view.js').catch(e => {
-            // eslint-disable-next-line no-console
-            console.log(e);
-          });
-        } else {
-          this.dispatchEvent(new CustomEvent('update-procedures-types-list'));
-        }
-        break;
+      // case 'procedurestypesview':
+      // if (typeof customElements.get('procedures-view') === 'undefined') {
+      // import('./procedures-view.js').catch(e => {
+      // eslint - disable - next - line no - console
+      // console.log(e);
+      // });
+      // } else {
+      // this.dispatchEvent(new CustomEvent('update-procedures-types-list'));
+      // }
+      // break;
       default:
       // eslint-disable-next-line no-param-reassign
       // page = 'view404';
