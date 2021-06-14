@@ -16,6 +16,11 @@ export class ProcForm extends LitElement {
       _date: { type: String },
       _procedureCode: { type: String },
       _patientName: { type: String },
+      _patientRecNumber: { type: String },
+      _patientGender: { type: String },
+      _patientAge: { type: Number },
+      _Bed: { type: String },
+      _Ward: { type: String },
       _doctorName: { type: String },
       _weekDay: { type: Number },
       doctors: { type: Array },
@@ -31,6 +36,10 @@ export class ProcForm extends LitElement {
     this._procedureName = '';
     this._procedureCode = '';
     this._patientName = '';
+    this._patientRecNumber = '';
+    this._patientGender = '';
+    this._Ward = '';
+    this._Bed = '';
     this._date = '';
     this._doctorName = '';
     this._dateISO = '';
@@ -232,11 +241,59 @@ export class ProcForm extends LitElement {
                 />
               </div>
               <div class="field">
-                <label class="label">Procedimento</label>
+                <label class="label">Hora (24h)</label>
+                <div class="select">
+                  <select id="hours" name="hours">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                  </select>
+                </div>
+                <span>:</span>
+                <div class="select">
+                  <select id="minutes" name="minutes">
+                    <option value="00">00</option>
+                    <option value="05">05</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="25">25</option>
+                    <option value="30">30</option>
+                    <option value="35">35</option>
+                    <option value="40">40</option>
+                    <option value="45">45</option>
+                    <option value="50">50</option>
+                    <option value="55">55</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Médico</label>
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select id="proc-type-select" required>
-                      ${this._procTypesOptions}
+                    <select id="proc-doctor-name" required>
+                      ${this._doctorsOptions}
                     </select>
                   </div>
                 </div>
@@ -253,11 +310,88 @@ export class ProcForm extends LitElement {
                 />
               </div>
               <div class="field">
-                <label class="label">Médico</label>
+                <label class="label">Registro</label>
+                <input
+                  class="input"
+                  id="patient-record-number"
+                  type="text"
+                  placeholder="Registro"
+                  .value="${this._patientRecNumber}"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label class="label"> Gênero</label>
+                <div class="control">
+                  <label class="radio">
+                    <input id="gender-male" type="radio" name="gender" />
+                    Masculino
+                  </label>
+                  <label class="radio">
+                    <input id="gender-female" type="radio" name="gender" />
+                    Feminino
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Idade</label>
+                <input
+                  class="input"
+                  id="patient-age"
+                  type="number"
+                  min="0"
+                  step="1"
+                  placholder="Idade (anos)"
+                  .value="${this._patientAge}"
+                />
+              </div>
+
+              <div class="field">
+                <label class="field">Unidade</label>
+                <div class="select">
+                  <select id="ward" name="ward">
+                    <option value="CC">CC</option>
+                    <option value="SALA VERMELHA">SALA VERMELHA</option>
+                    <option value="SALA AMARELA">SALA AMARELA</option>
+                    <option value="SALA VERDE">SALA VERDE</option>
+                    <option value="CO">CO</option>
+                    <option value="CONSULTÓRIO">CONSULTÓRIO</option>
+                    <option value="UTI 1">UTI 1</option>
+                    <option value="UTI 2">UTI 2</option>
+                    <option value="UTI CIRURG">UTI CIRURG</option>
+                    <option value="UTI NEURO">CHD</option>
+                    <option value="UTI CARDIO">UTI CARDIO</option>
+                    <option value="ENF INTERMEDIARIO">ENF INTERMEDIARIO</option>
+                    <option value="ENF 1A">ENF 1A</option>
+                    <option value="ENF 1B">ENF 1B</option>
+                    <option value="ENF 1C">ENF 1C</option>
+                    <option value="ENF 2A">ENF 2A</option>
+                    <option value="ENF 2B">ENF 2B</option>
+                    <option value="ENF 2C">ENF 2C</option>
+                    <option value="ENF 3A">ENF 3A</option>
+                    <option value="ENF 3B">ENF 3B</option>
+                    <option value="ENF 3C">ENF 3C</option>
+                    <option value="ENF 4A">ENF 4A</option>
+                    <option value="ENF 4B">ENF 4B</option>
+                    <option value="ENF 4C">ENF 4C</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Leito</label>
+                <input
+                  class="input"
+                  id="bed"
+                  type="text"
+                  .value="${this._Bed}"
+                />
+              </div>
+              <div class="field">
+                <label class="label">Procedimento</label>
                 <div class="control is-expanded">
                   <div class="select is-fullwidth">
-                    <select id="proc-doctor-name" required>
-                      ${this._doctorsOptions}
+                    <select id="proc-type-select" required>
+                      ${this._procTypesOptions}
                     </select>
                   </div>
                 </div>
