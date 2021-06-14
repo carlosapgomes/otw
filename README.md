@@ -63,11 +63,15 @@ Answer 'y' to `Is enabled?` and to `Is admin?`.
 
 ## Quickstart
 
-## Scripts
+## Running
 
-- `start` runs your app for development, reloading on file changes
-- `start:build` runs your app after it has been built using the build command
-- `build` builds your app and outputs it in your `dist` directory
-- `test` runs your test suite with Web Test Runner
-- `lint` runs the linter for your project
+Build the system with: `yarn build`
+
+Update `firebase.json` and change  `hosting.public = 'dist'`
+
+Deploy functions with `firebase deploy --only functons`
+
+Run locally with `firebase serve --only hosting`
+
+Execute `yarn storybook` to test/check each component.
 
