@@ -63,15 +63,13 @@ Answer 'y' to `Is enabled?` and to `Is admin?`.
 
 ## Quickstart
 
-## Running
+Execute `yarn storybook` to test/check each component.
 
 Build the system with: `yarn build`
 
-Update `firebase.json` and change  `hosting.public = 'dist'`
+Update `firebase.json` and change  `hosting.public` to `"dist"`
 
 Deploy functions with `firebase deploy --only functons`
 
 Run locally with `firebase serve --only hosting`
-
-Execute `yarn storybook` to test/check each component.
 
