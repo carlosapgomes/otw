@@ -19,8 +19,7 @@ export class ProcForm extends LitElement {
       _patientRecNumber: { type: String },
       _patientGender: { type: String },
       _patientAge: { type: Number },
-      _Bed: { type: String },
-      _Ward: { type: String },
+      _bed: { type: String },
       _doctorName: { type: String },
       _weekDay: { type: Number },
       doctors: { type: Array },
@@ -38,8 +37,8 @@ export class ProcForm extends LitElement {
     this._patientName = '';
     this._patientRecNumber = '';
     this._patientGender = '';
-    this._Ward = '';
-    this._Bed = '';
+    this._patientAge = 0;
+    this._bed = '';
     this._date = '';
     this._doctorName = '';
     this._dateISO = '';
@@ -160,6 +159,10 @@ export class ProcForm extends LitElement {
     this._procedureName = '';
     this._procedureCode = '';
     this._patientName = '';
+    this._patientRecNumber = '';
+    this._patientGender = '';
+    this._patientAge = 0;
+    this._bed = '';
     const [d] = new Date().toISOString().split('T');
     this._dateISO = d;
     // @ts-ignore
@@ -185,7 +188,7 @@ export class ProcForm extends LitElement {
     this._procedureName = proc.procedure;
     this._procedureCode = proc.code;
     // @ts-ignore
-    this._patientName = document.getElementById('patient-name').value;
+    // this._patientName = document.getElementById('patient-name').value;
     // @ts-ignore
     this._doctorName = document.getElementById('proc-doctor-name').value;
     // @ts-ignore
@@ -193,12 +196,25 @@ export class ProcForm extends LitElement {
     const dt = new Date(`${d} GMT-03:00`);
     this._date = `${d[2]}/${d[1]}/${d[0]}`;
     this._weekDay = dt.getDay();
+    const HH = document.getElementById('hours').value;
+    const MM = document.getElementById('minutes').value;
+    const procTime = `${HH}:${MM}`;
+    const gender = document.getElementById('gender-male').selected
+      ? 'male'
+      : 'female';
+    const ward = document.getElementById('ward').value;
     const p = {
       procedure: this._procedureName,
       procCode: this._procedureCode,
       patientName: this._patientName,
+      patientRecNumber: this._patientRecNumber,
+      patientAge: this._patientAge,
+      patientGender: gender,
+      ward,
+      bed: this._bed,
       doctorName: this._doctorName,
       date: this._date,
+      time: procTime,
       weekDay: this._weekDay,
     };
     if (this.procedure && this.procedure.key) {
@@ -383,7 +399,7 @@ export class ProcForm extends LitElement {
                   class="input"
                   id="bed"
                   type="text"
-                  .value="${this._Bed}"
+                  .value="${this._bed}"
                 />
               </div>
               <div class="field">
