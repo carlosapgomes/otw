@@ -16,6 +16,8 @@ export class UserForm extends LitElement {
       _phone: { type: String },
       _isEnabled: { type: Boolean },
       _isAdmin: { type: Boolean },
+      _isDoctor: { type: Boolean },
+      _docLicenceNumber: { type: String },
     };
   }
 
@@ -28,6 +30,8 @@ export class UserForm extends LitElement {
     this._phone = '';
     this._isEnabled = false;
     this._isAdmin = false;
+    this._isDoctor = false;
+    this._docLicenceNumber = '';
   }
 
   updated(changedProperties) {
@@ -38,6 +42,9 @@ export class UserForm extends LitElement {
         this._phone = this.user.phoneNumber ? this.user.phoneNumber : '';
         this._isEnabled = this.user.isEnabled ? this.user.isEnabled : false;
         this._isAdmin = this.user.isAdmin ? this.user.isAdmin : false;
+        this._isDoctor = this.user._isDoctor ? this.user._isDoctor : false;
+        this._docLicenceNumber =
+          this.user._docLicenceNumber !== '' ? this.user._docLicenceNumber : '';
       }
     }
   }
@@ -60,6 +67,8 @@ export class UserForm extends LitElement {
     this._phone = '';
     this._isEnabled = false;
     this._isAdmin = false;
+    this._isDoctor = false;
+    this._docLicenceNumber = '';
   }
 
   _saveForm(e) {
@@ -81,6 +90,12 @@ export class UserForm extends LitElement {
     this._isEnabled = document.getElementById('user-is-enabled').checked;
     // @ts-ignore
     this._isAdmin = document.getElementById('user-is-admin').checked;
+    // @ts-ignore
+    this._isDoctor = document.getElementById('user-is-doctor').checked;
+    // @ts-ignore
+    this._docLicenceNumber = document.getElementById(
+      'doc-licence-number'
+    ).value;
 
     const u = {
       displayName: this._name,
@@ -88,6 +103,8 @@ export class UserForm extends LitElement {
       phoneNumber: this._phone,
       isEnabled: this._isEnabled,
       isAdmin: this._isAdmin,
+      isDoctor: this._isDoctor,
+      docLicenceNumber: this._docLicenceNumber,
     };
     if (this.user && this.user.key) {
       u.key = this.user.key;
@@ -165,6 +182,26 @@ export class UserForm extends LitElement {
                 />
                 Admin</label
               >
+              <label class="checkbox">
+                <input
+                  id="user-is-doctor"
+                  type="checkbox"
+                  @click="${() => {
+                    this._isDoctor = !this._isDoctor;
+                  }}"
+                  ?checked="${this._isDoctor}"
+                />
+                Médico</label
+              >
+              <div class="field">
+                <input
+                  class="input"
+                  id="doctor-licence-number"
+                  type="text"
+                  placeholder="CRM"
+                  ?disabled="${!this._isDoctor}"
+                />
+              </div>
             </form>
           </section>
           <footer class="modal-card-foot">
