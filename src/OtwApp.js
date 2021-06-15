@@ -470,6 +470,22 @@ export class OtwApp extends LitElement {
           this._spinnerHidden = true;
           this._modalMsg = 'Usuário gravado com sucesso!';
           this._toggleModal = true;
+          if (u.isDoctor) {
+            const d = {
+              name: u.displayName,
+              crm: u.doctorLicenceNumber,
+            };
+            // eslint-disable-next-line no-console
+            // console.log(d);
+            // fire event to save/update doctor
+            this.dispatchEvent(
+              new CustomEvent('save-doctor-form', {
+                detail: d,
+                bubbles: true,
+                composed: true,
+              })
+            );
+          }
         })
         // eslint-disable-next-line no-shadow
         .catch(e => {
